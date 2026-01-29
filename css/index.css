@@ -30,6 +30,37 @@
     padding: 0;
 }
 
+.main-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    backdrop-filter: blur(10px);
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.main-nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+}
+
+.main-nav a:hover {
+    color: var(--text);
+}
+
 body {
     background: var(--bg);
     color: var(--text);
@@ -150,69 +181,107 @@ section h2 {
     font-weight: 500;
 }
 
+/* Experience Section Enhancements */
 #Experience ul {
     list-style: none;
     display: flex;
     flex-direction: column;
+    gap: 0;
+    /* Removing gap, using padding for separation */
     border-top: 1px solid var(--border);
 }
 
-#Experience li {
+.experience-item {
     padding: 32px 0;
     border-bottom: 1px solid var(--border);
-    font-family: var(--font-ui);
-    font-size: 18px;
-    color: var(--text-dim);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.experience-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    padding-left: 16px;
+    /* Subtle indentation on hover */
+    padding-right: 16px;
+}
+
+.job-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    transition: all 0.2s;
+    align-items: baseline;
+    width: 100%;
 }
 
-#Experience li:hover {
+.job-title {
+    font-family: var(--font-ui);
+    font-size: 18px;
+    font-weight: 500;
     color: var(--text);
-    padding-left: 20px;
+    letter-spacing: -0.01em;
 }
 
-#Experience li::before {
-    content: "0" counter(list-item);
-    counter-increment: list-item;
+.job-date {
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--text-meta);
-    margin-right: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
+.job-desc {
+    color: var(--text-dim);
+    font-size: 15px;
+    /* Slightly smaller for hierarchy */
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+/* Skills Section Placeholder Styling */
+#Skills {
+    min-height: 100px;
+    /* Temporary height to show section existence */
+}
+
+/* Connect Section Enhancements */
 #Connect {
     padding-bottom: 120px;
 }
 
 #Connect ul {
     display: flex;
-    gap: 24px;
+    justify-content: flex-start;
+    /* Align left for cleaner look, or center if preferred. Going with left for strict alignment */
+    gap: 16px;
     list-style: none;
+    flex-wrap: wrap;
 }
 
 #Connect li a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    /* Slightly more refined size */
+    height: 56px;
     border: 1px solid var(--border);
     color: var(--text-meta);
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: transparent;
 }
 
 #Connect li a:hover {
     background: var(--text);
     color: var(--bg);
     border-color: var(--text);
+    transform: translateY(-2px);
+    /* Subtle lift */
 }
 
 #Connect svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 @media (max-width: 600px) {
@@ -229,8 +298,19 @@ section h2 {
         padding: 24px 0;
     }
 
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
     .content-section {
         padding: 80px 20px;
         gap: 80px;
+    }
+
+    #Connect ul {
+        justify-content: center;
+        /* Center on mobile */
     }
 }
