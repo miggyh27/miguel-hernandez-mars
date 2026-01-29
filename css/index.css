@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --bg: #050505;
+    --bg-alt: #0a0a0a;
+    --text: #EDEDED;
+    --text-dim: #888888;
+    --text-meta: #444444;
+    --border: #1F1F1F;
+    --accent: #FFFFFF;
+    --highlight: #67e8f9;
+
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+::selection {
+    background: var(--highlight);
+    color: var(--bg);
+}
+
+::-moz-selection {
+    background: var(--highlight);
+    color: var(--bg);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.hero-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    z-index: 2;
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.85;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    mix-blend-mode: normal;
+}
+
+.name-part {
+    font-size: clamp(60px, 15vw, 200px);
+    color: var(--text);
+    text-transform: uppercase;
+}
+
+.name-part:last-child {
+    color: var(--text-dim);
+}
+
+.designation-wrapper {
+    margin-top: 16px;
+}
+
+.designation {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text);
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    padding: 12px 24px;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-meta);
+    letter-spacing: 0.1em;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.content-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 120px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+section h2 {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-meta);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    border-left: 2px solid var(--text-meta);
+    padding-left: 16px;
+}
+
+#About p {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-dim);
+    line-height: 1.5;
+    max-width: 90%;
+}
+
+#About p strong {
+    color: var(--text);
+    font-weight: 500;
+}
+
+#Experience ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+}
+
+#Experience li {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-ui);
+    font-size: 18px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+#Experience li:hover {
+    color: var(--text);
+    padding-left: 20px;
+}
+
+#Experience li::before {
+    content: "0" counter(list-item);
+    counter-increment: list-item;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-meta);
+    margin-right: 24px;
+}
+
+#Connect {
+    padding-bottom: 120px;
+}
+
+#Connect ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+}
+
+#Connect li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--border);
+    color: var(--text-meta);
+    transition: all 0.2s;
+}
+
+#Connect li a:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+}
+
+#Connect svg {
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width: 600px) {
+    .name-part {
+        font-size: 15vw;
+    }
+
+    #About p {
+        font-size: 18px;
+    }
+
+    #Experience li {
+        font-size: 16px;
+        padding: 24px 0;
+    }
+
+    .content-section {
+        padding: 80px 20px;
+        gap: 80px;
+    }
+}
