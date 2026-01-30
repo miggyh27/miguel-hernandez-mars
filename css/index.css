@@ -1,3 +1,4 @@
+/* --- DESKTOP / BASE STYLES --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
@@ -34,10 +35,10 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: var(--bg);
+    background: rgba(5, 5, 5, 0.8);
     border-bottom: 1px solid var(--border);
     padding: 20px 0;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
 }
 
 .main-nav ul {
@@ -181,13 +182,13 @@ section h2 {
     font-weight: 500;
 }
 
-/* Experience Section Enhancements */
+/* Experience Section - CSS GRID STRETCH GOAL */
 #Experience ul {
     list-style: none;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    /* Stretch Goal: Using Grid */
+    grid-template-columns: 1fr;
     gap: 0;
-    /* Removing gap, using padding for separation */
     border-top: 1px solid var(--border);
 }
 
@@ -203,7 +204,6 @@ section h2 {
 .experience-item:hover {
     background: rgba(255, 255, 255, 0.03);
     padding-left: 16px;
-    /* Subtle indentation on hover */
     padding-right: 16px;
 }
 
@@ -233,18 +233,14 @@ section h2 {
 .job-desc {
     color: var(--text-dim);
     font-size: 15px;
-    /* Slightly smaller for hierarchy */
     line-height: 1.6;
     max-width: 90%;
 }
 
-/* Skills Section Placeholder Styling */
 #Skills {
     min-height: 100px;
-    /* Temporary height to show section existence */
 }
 
-/* Connect Section Enhancements */
 #Connect {
     padding-bottom: 120px;
 }
@@ -252,7 +248,6 @@ section h2 {
 #Connect ul {
     display: flex;
     justify-content: flex-start;
-    /* Align left for cleaner look, or center if preferred. Going with left for strict alignment */
     gap: 16px;
     list-style: none;
     flex-wrap: wrap;
@@ -263,7 +258,6 @@ section h2 {
     align-items: center;
     justify-content: center;
     width: 56px;
-    /* Slightly more refined size */
     height: 56px;
     border: 1px solid var(--border);
     color: var(--text-meta);
@@ -276,7 +270,6 @@ section h2 {
     color: var(--bg);
     border-color: var(--text);
     transform: translateY(-2px);
-    /* Subtle lift */
 }
 
 #Connect svg {
@@ -284,33 +277,66 @@ section h2 {
     height: 20px;
 }
 
+/* --- TABLET MEDIA QUERY --- */
+/* Targeting tablet devices (iPad Portrait to logical Landscape) */
+@media (max-width: 1024px) {
+
+    /* Header Typography */
+    .name-part {
+        font-size: 12vw;
+        letter-spacing: -0.02em;
+    }
+
+    /* Nav Adjustment */
+    .main-nav ul {
+        gap: 20px;
+        padding: 0 16px;
+    }
+
+    /* Content Layout */
+    .content-section {
+        padding: 80px 32px;
+        gap: 80px;
+    }
+}
+
+/* --- MOBILE MEDIA QUERY --- */
 @media (max-width: 600px) {
+
+    /* Typography Adjustments */
     .name-part {
         font-size: 15vw;
+        line-height: 0.9;
     }
 
     #About p {
         font-size: 18px;
+        line-height: 1.4;
     }
 
-    #Experience li {
-        font-size: 16px;
-        padding: 24px 0;
-    }
-
+    /* Experience Item: Stacked Layout */
     .job-header {
         flex-direction: column;
-        align-items: flex-start;
         gap: 4px;
     }
 
-    .content-section {
-        padding: 80px 20px;
-        gap: 80px;
+    .job-date {
+        color: var(--text-dim);
     }
 
+    .experience-item {
+        padding: 24px 0;
+        gap: 8px;
+    }
+
+    /* Connect Section: Centered Icons */
     #Connect ul {
         justify-content: center;
-        /* Center on mobile */
+        gap: 20px;
+    }
+
+    .content-section {
+        padding: 60px 20px;
+        gap: 60px;
     }
 }
