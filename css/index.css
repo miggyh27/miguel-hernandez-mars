@@ -237,10 +237,55 @@ section h2 {
     max-width: 90%;
 }
 
+/* Skills Section Styling */
 #Skills {
-    min-height: 100px;
+    min-height: auto;
+    margin-bottom: 80px;
 }
 
+#Skills ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+#Skills li {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+#Skills li:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+    transform: translateY(-2px);
+}
+
+/* Footer Styling */
+footer {
+    padding: 40px 0 60px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+}
+
+footer p {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Connect Section Enhancements */
 #Connect {
     padding-bottom: 120px;
 }
