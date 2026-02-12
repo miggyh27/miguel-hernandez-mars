@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-    --bg-void: #020202;
-    /* True Pitch Black */
-    --bg-marble: #050505;
-    --text-marble: #ffffff;
-    --text-stone: #64748b;
-    /* Slate-500, muted but legible */
-    --accent-tech: #0ea5e9;
-    /* Sky-500, slightly deeper blue */
-    --accent-glow: rgba(14, 165, 233, 0.1);
+    --bg-void: #050505;
+    --bg-marble: #0a0a0a;
+    --text-marble: #f3f4f6;
+    --text-stone: #9ca3af;
+    --accent-tech: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.1);
 
-    --border-faint: rgba(255, 255, 255, 0.03);
-    --border-strong: rgba(255, 255, 255, 0.08);
+    --border-faint: rgba(255, 255, 255, 0.05);
+    --border-strong: rgba(255, 255, 255, 0.1);
 
     --font-heading: 'Space Mono', monospace;
     --font-body: 'Inter', sans-serif;
     --font-tech: 'Space Mono', monospace;
+
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-glitch: cubic-bezier(.25, .46, .45, .94);
 
     --spacing-monolith: 140px;
 }
@@ -45,7 +45,7 @@ body {
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     position: relative;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
 }
 
 body::before {
@@ -58,31 +58,14 @@ body::before {
     pointer-events: none;
     z-index: 50;
     opacity: 0.03;
-    /* Reduced noise for cleaner black */
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* ENGINEERING GRID */
-/* A subtle precision guideline layer, not a distracting mesh */
-.grid-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    background-size: 60px 60px;
-    background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
-    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
-}
+
 
 ::selection {
     background: var(--text-marble);
-    color: var(--bg-void);
+    color: #000;
 }
 
 /* Navigation */
@@ -146,7 +129,6 @@ body::before {
 }
 
 /* Hero Section */
-/* Hero Section */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -154,51 +136,49 @@ body::before {
     justify-content: center;
     align-items: center;
     position: relative;
-    padding: 0 24px;
-    text-align: center;
+    padding: 0 5%;
+    text-align: left;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-strong);
 }
 
 .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 32px;
     z-index: 2;
-    max-width: 800px;
-    margin-top: -5vh;
-    /* Visual optical center adjustment */
+    max-width: 1000px;
+    margin-top: 0;
 }
 
 h1 {
     font-family: var(--font-heading);
-    line-height: 1.1;
+    line-height: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .name-part {
     display: block;
-    font-size: clamp(40px, 8vw, 100px);
+    font-size: clamp(60px, 12vw, 180px);
     font-weight: 700;
     color: var(--text-marble);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     text-transform: uppercase;
+    line-height: 0.85;
 }
 
 .name-part:last-child {
     font-weight: 400;
-    color: var(--accent-tech);
-    font-size: clamp(16px, 3vw, 24px);
-    letter-spacing: 0.1em;
-    margin-top: 16px;
-    border: none;
-    padding: 0;
-    background: none;
-    box-shadow: none;
-    font-family: var(--font-body);
-    text-transform: none;
-    /* Keep it casual */
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stone);
+    font-size: clamp(60px, 12vw, 180px);
+    letter-spacing: -0.04em;
+    margin-top: 0;
+    line-height: 0.85;
+    opacity: 0.5;
 }
 
 .designation-wrapper {
@@ -214,65 +194,62 @@ h1 {
 
 .designation {
     font-family: var(--font-tech);
-    font-size: 13px;
+    font-size: 11px;
     color: var(--text-stone);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 400;
+    letter-spacing: 0.25em;
+    font-weight: 500;
     white-space: nowrap;
+    word-spacing: 0.4em;
 }
 
 /* Hero Nav Hub */
 .hero-nav {
     display: flex;
-    gap: 24px;
-    margin-top: 64px;
+    gap: 48px;
+    margin-top: 48px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .hero-link {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     text-decoration: none;
-    padding: 16px 32px;
-    border: 1px solid var(--border-faint);
-    background: rgba(255, 255, 255, 0.02);
+    padding: 0;
+    border: none;
+    background: transparent;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    min-width: 150px;
-    backdrop-filter: blur(5px);
+    min-width: auto;
+    backdrop-filter: none;
 }
 
 .hero-link:hover {
-    border-color: var(--accent-tech);
-    background: rgba(14, 165, 233, 0.05);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-color: transparent;
+    background: transparent;
+    transform: translateX(10px);
+    box-shadow: none;
 }
 
 .link-label {
-    font-family: var(--font-heading);
-    font-size: 12px;
-    color: var(--text-marble);
-    font-weight: 700;
+    font-family: var(--font-tech);
+    font-size: 14px;
+    color: var(--text-stone);
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+    margin-bottom: 0;
+    transition: color 0.2s;
+}
+
+.hero-link:hover .link-label {
+    color: var(--accent-tech);
+    text-decoration: line-through;
 }
 
 .link-meta {
-    font-family: var(--font-tech);
-    font-size: 9px;
-    color: var(--text-stone);
-    opacity: 0.6;
-    transition: color 0.3s;
-    letter-spacing: 0.05em;
-}
-
-.hero-link:hover .link-meta {
-    color: var(--accent-tech);
-    opacity: 1;
+    display: none;
 }
 
 /* Sections */
@@ -295,11 +272,11 @@ section h2 {
     color: var(--accent-tech);
     text-transform: uppercase;
     letter-spacing: 0.3em;
-    margin-bottom: 80px;
-    text-align: center;
+    margin-bottom: 60px;
+    text-align: left;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding-top: 24px;
     border-top: 1px solid var(--border-faint);
 }
@@ -310,9 +287,9 @@ section h2 {
     font-size: 32px;
     line-height: 1.5;
     color: var(--text-marble);
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
+    text-align: left;
+    max-width: 800px;
+    margin: 0;
     font-weight: 400;
     letter-spacing: -0.01em;
 }
@@ -423,6 +400,19 @@ section h2 {
     /* Consistent slight transparent bg */
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card:nth-child(3n) {
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+    .project-card:nth-child(3n) {
+        grid-column: span 1;
+    }
 }
 
 .project-card::before {
@@ -518,9 +508,10 @@ section h2 {
 /* Connect */
 #Connect ul {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 64px;
     list-style: none;
+    padding-left: 0;
 }
 
 #Connect li a {
@@ -553,8 +544,7 @@ section h2 {
     width: 100%;
 }
 
-/* Contact Form */
-/* Contact Form */
+
 #contact form {
     max-width: 600px;
     margin: 0 auto;
@@ -609,7 +599,6 @@ section h2 {
     cursor: pointer;
     transition: all 0.3s ease;
     min-height: 48px;
-    /* Mobile touch target */
 }
 
 .submit-btn:hover {
@@ -784,7 +773,7 @@ footer p {
 
     .hud-container {
         display: none;
-        /* Hide HUD on mobile to prevent clutter */
+
     }
 
     .main-nav ul {
@@ -811,10 +800,11 @@ footer p {
         border-left: none;
         color: var(--accent-tech);
         font-family: var(--font-tech);
-        /* Technical feel */
     }
 
     #Connect ul {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
     }
 }

@@ -1,4 +1,3 @@
-// Force scroll to top on reload (Aggressive Reset)
 if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
 }
@@ -7,8 +6,7 @@ window.addEventListener('load', () => {
     window.scrollTo(0, 0);
 });
 
-// Typing Effect for Hero
-// Typing Effect for Hero
+// Hero text effect
 const designationElement = document.querySelector('.designation');
 if (designationElement) {
     const text = designationElement.innerText;
@@ -82,18 +80,17 @@ if (messageForm) {
     messageForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const usersName = event.target.usersName.value;
-        const usersEmail = event.target.usersEmail.value;
-        const usersMessage = event.target.usersMessage.value;
+        const name = event.target.usersName.value;
+        const email = event.target.usersEmail.value;
+        const message = event.target.usersMessage.value;
 
-        // Log for verification (Lesson 12 Requirement)
-        console.log("Form Submission:", { usersName, usersEmail, usersMessage });
+        console.log("Form Submission:", { name, email, message });
 
-        const newMessage = createMessageElement(usersName, usersEmail, usersMessage);
+        const newMessage = createMessageElement(name, email, message);
 
         messageList.appendChild(newMessage);
 
-        // Show the message section since we added a specific message
+        // Show list
         messageSection.style.display = "block";
 
         messageForm.reset();
@@ -115,7 +112,6 @@ function createMessageElement(name, email, message) {
         </div>
     `;
 
-    // Remove Functionality
     const removeBtn = li.querySelector(".remove-btn");
     removeBtn.addEventListener("click", () => {
         const entry = removeBtn.closest("li");
@@ -123,7 +119,6 @@ function createMessageElement(name, email, message) {
         checkMessageListEmpty();
     });
 
-    // Edit Functionality (Stretch Goal)
     const editBtn = li.querySelector(".edit-btn");
     editBtn.addEventListener("click", () => {
         const messageSpan = li.querySelector(".message-text");
@@ -204,8 +199,7 @@ const featuredProjects = [
 const projectSection = document.getElementById("Projects");
 const projectList = projectSection.querySelector("ul");
 
-// Add featured projects first
-// Add featured projects first
+
 featuredProjects.forEach(proj => {
     const project = document.createElement("li");
     project.className = "project-card featured";
