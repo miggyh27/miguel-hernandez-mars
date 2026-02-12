@@ -223,56 +223,55 @@ featuredProjects.forEach(proj => {
 
 // Then add GitHub repos
 
+
+// ==========================================
+// GITHUB REPO FETCH (LIVE UPDATES)
+// ==========================================
+
 fetch("https://api.github.com/users/miggyh27/repos")
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) throw new Error(`Status Code: ${response.status}`);
+        return response.json();
+    })
     .then(repositories => {
-        console.log("GitHub Repositories:", repositories);
+        // Sort by last updated (newest first)
+        repositories.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
-        const excludedProjects = [
-            "moon-dev-ai-agents",
-            "moon-dev-ai-agents-for-trading",
-            "Official",
-            "openai-agents-python",
-            "openai-cua-sample-app",
-            "OpenAPI-Clawd",
-            "postiz-app",
-            "Pump.fun-bundler",
-            "PupPace",
-            "solana-raydium-token-launchpad",
-            "web-ui",
-            "InfiniteYou",
-            "lobe-chat"
-        ];
+        // Filter out forked repos if desired, or just take the top 8 recent
+        const recentRepos = repositories.slice(0, 8);
 
-        for (let i = 0; i < repositories.length; i++) {
-            const repoName = repositories[i].name;
+        recentRepos.forEach(repo => {
+            // Skip if it's already in featured (optional check, skipping for now to show all)
 
-            if (excludedProjects.includes(repoName)) {
-                continue;
-            }
+            const li = document.createElement("li");
+            li.className = "project-card";
 
-            const project = document.createElement("li");
-            project.className = "project-card";
+            const language = repo.language || "CODE";
+            const year = new Date(repo.updated_at).getFullYear();
+            const command = `> git clone ${repo.name}`;
 
-            const repoUrl = repositories[i].html_url;
-            const repoDesc = repositories[i].description || "No description";
-            const repoLang = repositories[i].language || "—";
-
-            project.innerHTML = `
-                <a href="${repoUrl}" target="_blank" rel="noopener noreferrer">
-                    <span class="project-name">${repoName}</span>
-                    <span class="project-meta">${repoLang}</span>
+            li.innerHTML = `
+                <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+                    <span class="project-meta">${language.toUpperCase()} // ${year}</span>
+                    <span class="project-name">${repo.name}</span>
                 </a>
-                <p class="project-desc">${repoDesc}</p>
+                <p class="project-desc">${repo.description || "No description available via API."}</p>
+                <div class="terminal-prompt">
+                    <span>${command}</span>
+                </div>
             `;
 
-            projectList.appendChild(project);
-        }
+            projectList.appendChild(li);
+        });
     })
     .catch(error => {
-        console.error("Failed to fetch repositories:", error);
-        projectList.innerHTML = `<li class="error-state">Unable to load projects. Please try again later.</li>`;
+        console.error("Fetch Error:", error);
+        const errorItem = document.createElement("li");
+        errorItem.className = "error-state";
+        errorItem.innerText = `[SYSTEM FAILURE] Unable to retrieve repositories: ${error.message}`;
+        projectList.appendChild(errorItem);
     });
+
 
 const nav = document.querySelector('.main-nav');
 window.addEventListener('scroll', () => {
