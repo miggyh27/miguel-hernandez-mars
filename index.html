@@ -11,17 +11,7 @@
 
 <body>
     <!-- ENGINEERING LAYER -->
-    <div class="grid-overlay"></div>
-    <div class="hud-container">
-        <div class="hud-row">
-            <span class="hud-text">SYS.08</span>
-            <span class="hud-text">MARS.OS</span>
-        </div>
-        <div class="hud-row">
-            <span class="hud-text">35.6895° N</span>
-            <span class="hud-text">139.6917° E</span>
-        </div>
-    </div>
+    <!-- Removed for casual aesthetic -->
 
     <nav class="main-nav">
         <ul>
@@ -41,12 +31,24 @@
                 <span class="name-part">Hernandez</span>
             </h1>
             <div class="designation-wrapper">
-                <p class="designation">Code The Dream Mars</p>
+                <p class="designation">Full-Stack Engineer • AI/ML • Systems Architect</p>
             </div>
-            <div class="scroll-indicator">
-                <div class="scroll-line"></div>
-                <span>Scroll</span>
-            </div>
+
+            <!-- Hero Navigation Hub -->
+            <nav class="hero-nav">
+                <a href="#Projects" class="hero-link">
+                    <span class="link-label">Work</span>
+                    <span class="link-meta">> View Projects</span>
+                </a>
+                <a href="#Experience" class="hero-link">
+                    <span class="link-label">Experience</span>
+                    <span class="link-meta">> Read Bio</span>
+                </a>
+                <a href="#Connect" class="hero-link">
+                    <span class="link-label">Connect</span>
+                    <span class="link-meta">> Get in touch</span>
+                </a>
+            </nav>
         </div>
     </header>
 
@@ -54,49 +56,38 @@
 
         <section id="About">
             <h2>About</h2>
-            <p>Researcher building autonomous AI systems. Been coding since high school—started with ecommerce, now I'm
-                deep
-                into agent architectures, trading bots, and deep learning. Currently working on ADARI and other AI
-                projects
-                that actually do things autonomously.</p>
+            <p>I'm a full-stack engineer building AI-powered systems for trading and creative automation. I focus on
+                production platforms that combine real-time data processing, multi-agent orchestration, and generative
+                AI.</p>
+            <p><strong>Focus areas:</strong> Autonomous systems, quantitative trading, multi-agent workflows, RAG
+                architectures</p>
         </section>
 
         <section id="Experience">
             <h2>Experience</h2>
             <ul>
                 <li class="experience-item">
-                    <span class="job-date">2023 - Present</span>
+                    <span class="job-date">2024 - Present</span>
                     <div class="job-info">
-                        <span class="job-title">Autonomous AI agent systems</span>
-                        <p class="job-desc">ADARI, NORTHSTAR, STRATMORE</p>
+                        <span class="job-title">STRATCLAWD</span>
+                        <p class="job-desc">Building autonomous trading infrastructure with agent orchestration, sandbox
+                            exchange, and behavior monitoring systems.</p>
                     </div>
                 </li>
                 <li class="experience-item">
-                    <span class="job-date">2022 - 2023</span>
+                    <span class="job-date">2024 - Present</span>
                     <div class="job-info">
-                        <span class="job-title">Trading bots & market automation</span>
-                        <p class="job-desc">Algorithmic trading implementation and market analysis tools.</p>
+                        <span class="job-title">Creative Automation Platforms</span>
+                        <p class="job-desc">Developed multi-agent systems for advertising research and generation,
+                            including real-time collaboration tools and brand intelligence extraction.</p>
                     </div>
                 </li>
                 <li class="experience-item">
-                    <span class="job-date">2021 - 2022</span>
+                    <span class="job-date">2023 - 2024</span>
                     <div class="job-info">
-                        <span class="job-title">Deep learning Researcher</span>
-                        <p class="job-desc">LSTM, RNN, sentiment analysis projects.</p>
-                    </div>
-                </li>
-                <li class="experience-item">
-                    <span class="job-date">2020 - 2021</span>
-                    <div class="job-info">
-                        <span class="job-title">Full Stack Developer</span>
-                        <p class="job-desc">Python, TypeScript, JavaScript development.</p>
-                    </div>
-                </li>
-                <li class="experience-item">
-                    <span class="job-date">2019 - 2020</span>
-                    <div class="job-info">
-                        <span class="job-title">Discord Automation</span>
-                        <p class="job-desc">Custom bots & automation tools for communities.</p>
+                        <span class="job-title">Painted Memory (Founder)</span>
+                        <p class="job-desc">Launched e-commerce business, scaled to 1000+ orders, managed end-to-end
+                            operations from ads to fulfillment.</p>
                     </div>
                 </li>
             </ul>
@@ -148,23 +139,23 @@
         </section>
         <section id="contact">
             <h2>Leave a Message</h2>
-            <form name="leave_message">
+            <form name="leave_message" class="message-form">
                 <div class="form-group">
                     <label for="usersName">Name</label>
-                    <input type="text" name="usersName" id="usersName" required>
+                    <input type="text" name="usersName" id="usersName" required autocomplete="name">
                 </div>
 
                 <div class="form-group">
                     <label for="usersEmail">Email</label>
-                    <input type="email" name="usersEmail" id="usersEmail" required>
+                    <input type="email" name="usersEmail" id="usersEmail" required autocomplete="email">
                 </div>
 
                 <div class="form-group">
                     <label for="usersMessage">Message</label>
-                    <textarea name="usersMessage" id="usersMessage" required></textarea>
+                    <textarea name="usersMessage" id="usersMessage" required rows="4"></textarea>
                 </div>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="submit-btn" aria-label="Submit Message">Submit</button>
             </form>
         </section>
 
